@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Panorama Estéreo VR</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  <!-- Componente de estéreo (mantido pelo grupo c-frame, versão 1.4.0) -->
+  <script src="https://cdn.jsdelivr.net/npm/aframe-stereo-component@1.4.0/dist/aframe-stereo-component.min.js"></script>
+
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+  </style>
+</head>
+<body>
+
+  <a-scene antialias="true">
+
+    <a-assets>
+      <!--
+        Coloque o arquivo de imagem panorâmica estéreo (top-bottom: olho esquerdo
+        em cima, olho direito embaixo) na mesma pasta deste index.html e ajuste
+        o nome abaixo se necessário.
+      -->
+      <img id="panorama" src="panorama.jpg">
+    </a-assets>
+
+    <!-- Câmera: fora do modo VR, mostra o olho esquerdo (mono) -->
+    <a-camera position="0 0 0" stereocam="eye: left"></a-camera>
+
+    <!-- Esfera do olho esquerdo: metade de CIMA da imagem -->
+    <a-entity
+      geometry="primitive: sphere; radius: 100; segmentsWidth: 64; segmentsHeight: 64"
+      material="shader: flat; src: #panorama; side: back"
+      scale="-1 1 1"
+      stereo="eye: left; split: vertical">
+    </a-entity>
+
+    <!-- Esfera do olho direito: metade de BAIXO da imagem -->
+    <a-entity
+      geometry="primitive: sphere; radius: 100; segmentsWidth: 64; segmentsHeight: 64"
+      material="shader: flat; src: #panorama; side: back"
+      scale="-1 1 1"
+      stereo="eye: right; split: vertical">
+    </a-entity>
+
+  </a-scene>
+
+</body>
+</html>
