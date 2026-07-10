@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>D5 Stereo VR</title>
+
+<script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-stereo-component/dist/aframe-stereo-component.min.js"></script>
+
+<style>
+body{
+    margin:0;
+}
+</style>
+
+</head>
+
+<body>
+
+<a-scene>
+
+<a-assets>
+<img id="pano" src="panorama.jpg">
+</a-assets>
+
+<!-- Olho esquerdo -->
+<a-entity
+stereo="eye:left"
+geometry="primitive:sphere; radius:5000"
+material="src:#pano; side:back"
+scale="-1 1 1">
+</a-entity>
+
+<!-- Olho direito -->
+<a-entity
+stereo="eye:right"
+geometry="primitive:sphere; radius:5000"
+material="src:#pano; side:back"
+scale="-1 1 1">
+</a-entity>
+
+<a-camera></a-camera>
+
+</a-scene>
+
+</body>
+</html>
