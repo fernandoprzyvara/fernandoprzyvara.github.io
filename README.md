@@ -1,2 +1,0 @@
-# fernandoprzyvara.github.io
-VR
